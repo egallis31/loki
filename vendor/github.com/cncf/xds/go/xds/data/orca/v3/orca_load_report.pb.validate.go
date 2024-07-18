@@ -73,6 +73,22 @@ func (m *OrcaLoadReport) Validate() error {
 
 	}
 
+	if m.GetRpsFractional() < 0 {
+		return OrcaLoadReportValidationError{
+			field:  "RpsFractional",
+			reason: "value must be greater than or equal to 0",
+		}
+	}
+
+	if m.GetEps() < 0 {
+		return OrcaLoadReportValidationError{
+			field:  "Eps",
+			reason: "value must be greater than or equal to 0",
+		}
+	}
+
+	// no validation rules for NamedMetrics
+
 	return nil
 }
 
